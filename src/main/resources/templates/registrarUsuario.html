@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:include="~{../static/html/head.html}"></head>
+<body>
+<header th:include="~{../static/html/header.html}"></header>
+    <main class="container">
+
+        <div class="contenedor-formulario">
+            <form th:action="@{/usuario/nuevoUsuario}"  th:method="post">
+                <div class="form-group">
+                    <label for="run-usuario">Run trabajador</label>
+                    <input type="number" class="form-control" id="run-usuario" name="run">
+                </div>
+                <div class="form-group">
+                    <label for="nombre-usuario">Nombre</label>
+                    <input type="text" class="form-control" id="nombre-usuario" name="nombre">
+                </div>
+                <div class="form-group">
+                    <label for="apellido1-usuario">Apellido 1</label>
+                    <input type="text" class="form-control" id="apellido1-usuario" name="apellido1">
+                </div>
+                <div class="form-group">
+                    <label for="email-usuario">Email</label>
+                    <input type="email" class="form-control" id="email-usuario" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password-usuario">Clave</label>
+                    <input type="password" class="form-control" id="password-usuario" name="clave">
+                </div>
+                <!--<input type="datetime-local" name="fechaCreacion">-->
+                <div style="display:none;">
+                    <input type="datetime-local" id="fechaInput" name="fechaCreacion" value="">
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="idPerfil.idPerfil" id="inlineRadio1" th:value="3">
+                    <label class="form-check-label" for="inlineRadio1">Empleador</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="idPerfil.idPerfil" id="inlineRadio2" th:value="2">
+                    <label class="form-check-label" for="inlineRadio2">Contador</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+
+
+            </form>
+        </div>
+    </main>
+    <footer th:include="~{../static/html/footer.html}" ></footer>
+    <div th:include="~{../static/html/linksScripts.html}" ></div>
+      <!-- Manejo fecha y hora actual -->
+    <script>
+        $(document).ready(function() {
+            // Obtener el elemento de entrada datetime-local
+            var fechaInput = document.getElementById('fechaInput');
+
+            // Obtener la fecha y hora actual
+            var fechaHoraActual = new Date();
+
+            // Formatear la fecha y hora
+            var anio = fechaHoraActual.getFullYear();
+            var mes = (fechaHoraActual.getMonth() + 1).toString().padStart(2, '0');
+            var dia = fechaHoraActual.getDate().toString().padStart(2, '0');
+            var hora = fechaHoraActual.getHours().toString().padStart(2, '0');
+            var minutos = fechaHoraActual.getMinutes().toString().padStart(2, '0');
+
+            // Establecer el valor del campo datetime-local
+            fechaInput.value = anio + '-' + mes + '-' + dia + 'T' + hora + ':' + minutos;
+        });
+    </script>
+</body>
+</html>

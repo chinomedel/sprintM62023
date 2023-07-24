@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:include="~{../static/html/head.html}"></head>
+<body>
+<header th:include="~{../static/html/header.html}"></header>
+<main class="container">
+    <div class="titulo">Ver Trabajadores</div>
+    <div class="row m-3">
+        <div class="col-md-3"><a th:href="@{/trabajadores/nuevoTrabajador}" class="btn btn-primary">Agregar Trabajador</a> </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Run</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="trab:${trabajador}">
+            <td th:text="${trab.getIdTrabajador()}"></td>
+            <td th:text="${trab.getRun()}"></td>
+            <td th:text="${trab.getNombre()}"></td>
+            <td th:text="${trab.getApellido1()}"></td>
+            <td th:text="${trab.getEmail()}"></td>
+
+            <th>
+                <!--<span><a th:href="@{/trabajadores/eliminar/{id}(id=${emp.getIdEmpleador()})}">Eliminar</a></span>-->
+                <span><a th:href="@{/trabajadores/editar/{id}(id=${trab.getIdTrabajador()})}">Editar</a></span>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<footer th:include="~{../static/html/footer.html}" ></footer>
+<div th:include="~{../static/html/linksScripts.html}" ></div>
+</body>
+</html>

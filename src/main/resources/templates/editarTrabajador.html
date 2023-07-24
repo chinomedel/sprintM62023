@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:include="~{../static/html/head.html}"></head>
+<body>
+<header th:include="~{../static/html/header.html}"></header>
+<main class="container">
+
+  <div class="contenedor-formulario">
+    <form th:action="@{/trabajadores/nuevoTrabajador}" th:object="${trabajador}"  th:method="post">
+      <div class="form-group">e
+        <label for="id-trabajador">Id Trabajador</label>
+        <input type="number" class="form-control" id="id-trabajador" th:field="*{idTrabajador}">
+      </div>
+      <div class="form-group">
+        <label th:each="empleador : ${empleadores}">
+          <input type="checkbox"  th:value="${empleador.idEmpleador}" name="empleadoresIds" th:checked="${empleadoresEncontrados.contains(empleador.idEmpleador)}"/>
+          <span th:text="${empleador.nombre}"></span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label for="run-trabajador">Run Trabajador</label>
+        <input type="number" class="form-control" id="run-trabajador" name="run" th:field="*{run}">
+      </div>
+      <div class="form-group">
+        <label for="nombre-trabajador">Nombre</label>
+        <input type="text" class="form-control" id="nombre-trabajador" th:field="*{nombre}">
+      </div>
+      <div class="form-group">
+        <label for="apellido1-trabajador">Apellido 1</label>
+        <input type="text" class="form-control" id="apellido1-trabajador" th:field="*{apellido1}">
+      </div>
+      <div class="form-group">
+        <label for="apellido2-trabajador">Apellido 2</label>
+        <input type="text" class="form-control" id="apellido2-trabajador" th:field="*{apellido2}" >
+      </div>
+      <div class="form-group">
+        <label for="telefono-trabajador">Telefono</label>
+        <input type="number" class="form-control" id="telefono-trabajador" th:field="*{telefono}">
+      </div>
+      <div class="form-group">
+        <label for="email-trabajador">Email</label>
+        <input type="email" class="form-control" id="email-trabajador" th:field="*{email}" >
+      </div>
+      <div class="form-group">
+        <label for="lista-salud">Institución de Salud</label>
+        <select  class="form-control" id="lista-salud" name="idInstSalud.idInstSalud">
+          <option th:each="isalud:${instSalud}" th:text="${isalud.getDescripcion()}" th:value="${isalud.idInstSalud}">1</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="lista-afp">AFP</label>
+        <select  class="form-control" id="lista-afp"  th:field="*{idInstPrevision.idInstPrevision}">
+          <option th:each="iprev:${instPrevision}" th:text="${iprev.getDescripcion()}" th:value="${iprev.idInstPrevision}">1</option>
+        </select>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+
+    </form>
+  </div>
+</main>
+<footer th:include="~{../static/html/footer.html}" ></footer>
+<div th:include="~{../static/html/linksScripts.html}" ></div>
+<!-- Manejo fecha y hora actual -->
+
+</body>
+</html>

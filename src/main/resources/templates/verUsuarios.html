@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:include="~{../static/html/head.html}"></head>
+<body>
+    <header th:include="~{../static/html/header.html}"></header>
+    <main class="container">
+        <div class="titulo">Ver usuarios</div>
+        <div class="row m-3">
+            <div class="col-md-3"><a th:href="@{/usuario/nuevoUsuario}" class="btn btn-primary">Agregar Usuario</a> </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Run</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Perfil</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="users:${usuarios}">
+                    <td th:text="${users.getIdUsuario()}"></td>
+                    <td th:text="${users.getRun()}"></td>
+                    <td th:text="${users.getNombre()}"></td>
+                    <td th:text="${users.getApellido1()}"></td>
+                    <td th:text="${users.getEmail()}"></td>
+                    <td th:text="${users.idPerfil.getDescripcion()}"></td>
+                    <th>
+                        <span><a th:href="@{/usuario/eliminar/{id}(id=${users.getIdUsuario()})}">Eliminar</a></span>
+                        <span><a th:href="@{/usuario/editar/{id}(id=${users.getIdUsuario()})}">Editar</a></span>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <footer th:include="~{../static/html/footer.html}" ></footer>
+    <div th:include="~{../static/html/linksScripts.html}" ></div>
+</body>
+</html>

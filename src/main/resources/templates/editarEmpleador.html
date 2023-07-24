@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:include="~{../static/html/head.html}"></head>
+<body>
+<header th:include="~{../static/html/header.html}"></header>
+<main class="container">
+
+  <div class="contenedor-formulario">
+    <form th:action="@{/empleadores/nuevoEmpleador}" th:object="${empleadores}" th:method="post">
+      <div class="form-group">
+        <label for="id-empleador">Id Empleador</label>
+        <input type="number" class="form-control" id="id-empleador"  th:field="*{idEmpleador}">
+      </div>
+      <div class="form-group">
+        <label for="run-empleador">Run Empleador</label>
+        <input type="number" class="form-control" id="run-empleador" name="run" th:value="${empleadores.getRun()}">
+      </div>
+      <div class="form-group">
+        <label for="nombre-empleador">Nombre</label>
+        <input type="text" class="form-control" id="nombre-empleador" name="nombre" th:value="${empleadores.getNombre()}">
+      </div>
+      <div class="form-group">
+        <label for="apellido1-empleador">Apellido 1</label>
+        <input type="text" class="form-control" id="apellido1-empleador" name="apellido1" th:value="${empleadores.getApellido1()}">
+      </div>
+      <div class="form-group">
+        <label for="apellido2-empleador">Apellido 1</label>
+        <input type="text" class="form-control" id="apellido2-empleador" name="apellido2" th:value="${empleadores.getApellido2()}">
+      </div>
+      <div class="form-group">
+        <label for="direccion-empleador">Dirección</label>
+        <input type="text" class="form-control" id="direccion-empleador" name="direccion" th:value="${empleadores.getDireccion()}">
+      </div>
+      <div class="form-group">
+        <label for="email-usuario">Email</label>
+        <input type="email" class="form-control" id="email-usuario" name="email" th:value="${empleadores.getEmail()}">
+      </div>
+      <div class="form-group">
+        <label for="lista-usuarios">Usuario</label>
+        <select  class="form-control" id="lista-usuarios" name="idUsuario.idUsuario">
+          <option th:each="user:${usuarios}" th:text="${user.getNombre()}" th:value="${user.idUsuario}">1</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="telefono-empleador">Teléfono</label>
+        <input type="number" class="form-control" id="telefono-empleador" name="telefono">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
+
+    </form>
+  </div>
+</main>
+<footer th:include="~{../static/html/footer.html}" ></footer>
+<div th:include="~{../static/html/linksScripts.html}" ></div>
+<!-- Manejo fecha y hora actual -->
+
+</body>
+</html>
